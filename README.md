@@ -7,7 +7,4 @@ pip install -r requirements.txt
 ```
 python3 music.py
 ```
-```
-def main()
-    balls
-```
+
