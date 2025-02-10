@@ -56,7 +56,8 @@ def append_to_excel(song_name, artist_name, album_name, listen_duration, excel_f
 def main():
     last_logged_song = None
     listen_duration = 0
-    excel_file_path = input("Name of excel file (.xlsx): ")
+    tick_speed = 5 # How fast the program will update 
+    excel_file_path = input("Name of excel file (no need for .xlsx): ") + ".xlsx"
     
     while True:
         song_name, artist_name, album_name = get_current_track()
@@ -64,11 +65,11 @@ def main():
             album_name = album_name if album_name else ""
             current_song = (song_name, artist_name, album_name)
             if current_song == last_logged_song:
-                listen_duration += 5
+                listen_duration += tick_speed
             else:
                 if last_logged_song is not None:
                     append_to_excel(last_logged_song[0], last_logged_song[1], last_logged_song[2], listen_duration, excel_file_path)
-                listen_duration = 5
+                listen_duration = tick_speed
                 last_logged_song = current_song
         else:
             if last_logged_song is not None:
@@ -76,6 +77,6 @@ def main():
                 last_logged_song = None
                 listen_duration = 0
         
-        time.sleep(5)
+        time.sleep(tick_speed)
 
 main()
