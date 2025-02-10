@@ -33,7 +33,6 @@ def append_to_excel(song_name, artist_name, album_name, listen_duration, excel_f
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     date, time = timestamp.split(' ')
     
-    # Calculate minutes and seconds
     minutes = listen_duration // 60
     seconds = listen_duration % 60
     
