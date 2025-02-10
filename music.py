@@ -33,13 +33,18 @@ def append_to_excel(song_name, artist_name, album_name, listen_duration, excel_f
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     date, time = timestamp.split(' ')
     
+    # Calculate minutes and seconds
+    minutes = listen_duration // 60
+    seconds = listen_duration % 60
+    
     data = {
         "Date": [date],
         "Time": [time],
         "Title": [song_name],
         "Artist": [artist_name],
         "Album": [album_name],
-        "Listen Duration (seconds)": [listen_duration]
+        "Minutes": [minutes],
+        "Seconds": [seconds],
     }
     
     new_entry_df = pd.DataFrame(data)
@@ -51,12 +56,12 @@ def append_to_excel(song_name, artist_name, album_name, listen_duration, excel_f
         updated_df = new_entry_df
 
     updated_df.to_excel(excel_file_path, index=False)
-    print(f"Logged: {timestamp} - {song_name} by {artist_name} - {album_name} (Listened for {listen_duration} seconds)")
-
+    print(f"Logged: {timestamp} - {song_name} by {artist_name} - {album_name} (Listened for {minutes} min {seconds} sec)")
+    
 def main():
     last_logged_song = None
     listen_duration = 0
-    tick_speed = 5 # How fast the program will update 
+    tick_speed = 1 # How fast the program will update 
     excel_file_path = input("Name of excel file (no need for .xlsx): ") + ".xlsx"
     
     while True:
@@ -80,3 +85,4 @@ def main():
         time.sleep(tick_speed)
 
 main()
+ß
