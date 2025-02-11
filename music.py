@@ -60,7 +60,7 @@ def append_to_excel(song_name, artist_name, album_name, listen_duration, excel_f
 def main():
     last_logged_song = None
     listen_duration = 0
-    tick_speed = 1 # How fast the program will update 
+    tick_speed = 1 # How fast the program will update in secods
     excel_file_path = input("Name of excel file (no need for .xlsx): ") + ".xlsx"
     
     while True:
