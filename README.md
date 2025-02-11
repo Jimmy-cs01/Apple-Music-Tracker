@@ -1,5 +1,5 @@
 # Apple-Music-Tracker
-DIY Apple Replay
+#DIY Apple Replay
 ----------------------------------------------------------------------------
 Apple music tracker that logs data into excel spreadsheet 
 ----------------------------------------------------------------------------
