@@ -30,15 +30,18 @@ def get_current_track():
     return None, None, None
 
 def append_to_excel(song_name, artist_name, album_name, listen_duration, excel_file_path):
+    if listen_duration < 15:
+        return
+
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    date, time = timestamp.split(' ')
+    date, time_part = timestamp.split(' ')
     
     minutes = listen_duration // 60
     seconds = listen_duration % 60
     
     data = {
         "Date": [date],
-        "Time": [time],
+        "Time": [time_part],
         "Title": [song_name],
         "Artist": [artist_name],
         "Album": [album_name],
@@ -61,7 +64,6 @@ def main():
     last_logged_song = None
     start_time = None
     excel_file_path = input("Name of excel file (no need for .xlsx): ") + ".xlsx"
-    tickSpeed = 1 
 
     while True:
         song_name, artist_name, album_name = get_current_track()
@@ -70,13 +72,13 @@ def main():
             current_song = (song_name, artist_name, album_name)
             
             if current_song == last_logged_song:
-                pass  
+                pass  # Still playing the same song
             else:
                 if last_logged_song is not None and start_time is not None:
-                    listen_duration = round(time.time() - start_time)  
+                    listen_duration = round(time.time() - start_time)  # Calculate precise duration
                     append_to_excel(last_logged_song[0], last_logged_song[1], last_logged_song[2], listen_duration, excel_file_path)
                 
-                start_time = time.time()
+                start_time = time.time()  # Reset start time for new song
                 last_logged_song = current_song
         
         else:
@@ -86,6 +88,6 @@ def main():
                 last_logged_song = None
                 start_time = None
         
-        time.sleep(tickSpeed)
+        time.sleep(1)  # Keep checking every second
         
 main()
