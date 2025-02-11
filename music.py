@@ -72,13 +72,13 @@ def main():
             current_song = (song_name, artist_name, album_name)
             
             if current_song == last_logged_song:
-                pass  # Still playing the same song
+                pass  
             else:
                 if last_logged_song is not None and start_time is not None:
-                    listen_duration = round(time.time() - start_time)  # Calculate precise duration
+                    listen_duration = round(time.time() - start_time)  
                     append_to_excel(last_logged_song[0], last_logged_song[1], last_logged_song[2], listen_duration, excel_file_path)
                 
-                start_time = time.time()  # Reset start time for new song
+                start_time = time.time()  
                 last_logged_song = current_song
         
         else:
@@ -88,6 +88,6 @@ def main():
                 last_logged_song = None
                 start_time = None
         
-        time.sleep(1)  # Keep checking every second
+        time.sleep(1)  
         
 main()
