@@ -84,4 +84,3 @@ def main():
         time.sleep(tick_speed)
 
 main()
-ß
