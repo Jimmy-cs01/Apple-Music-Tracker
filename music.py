@@ -45,6 +45,8 @@ def append_to_excel(song_name, artist_name, album_name, listen_duration, excel_f
     if listen_duration < 15:
         return
 
+    listen_duration += 10
+    
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     date, time_part = timestamp.split(' ')
     
@@ -81,7 +83,7 @@ def main():
 
     while True:
         if key_pressed():
-            sys.stdin.read(1)  # Clear the input buffer
+            sys.stdin.read(1) 
             toggle_pause()
 
         if not is_paused:
@@ -107,6 +109,6 @@ def main():
                     last_logged_song = None
                     start_time = None
         
-        time.sleep(1)  # Reduce CPU usage
+        time.sleep(1)  
         
 main()
